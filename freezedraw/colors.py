@@ -55,13 +55,4 @@ if __name__ == '__main__':
             img3.set_pixel(x, y, colorsys.hsv_to_rgb(*near_hue_hsv(c)))
     img3.show()
 
-    img4 = image.Image(w, h)
-    c = bright_color_hsv()
-    simp = perlin.SimplexNoise()
-    simp.randomize()
-    for y in range(h):
-        for x in range(w):
-            v = math.fabs(simp.noise2(x/w, y/w))
-            img4.set_pixel(x, y, colorsys.hsv_to_rgb(c[0], c[1], v))
-    img4.show()
 
