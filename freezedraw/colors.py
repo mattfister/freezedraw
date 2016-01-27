@@ -1,8 +1,8 @@
 import random
-import matplotlib.pyplot as plt
-import numpy as np
 import colorsys
 from freezedraw import image
+from noise import perlin
+import math
 
 
 def bright_color_hsv():
@@ -33,7 +33,7 @@ def dark_color_rgb():
     return rgb
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     h = 100
     w = 100
     img = image.Image(w, h)
@@ -54,3 +54,14 @@ if __name__=='__main__':
         for x in range(w):
             img3.set_pixel(x, y, colorsys.hsv_to_rgb(*near_hue_hsv(c)))
     img3.show()
+
+    img4 = image.Image(w, h)
+    c = bright_color_hsv()
+    simp = perlin.SimplexNoise()
+    simp.randomize()
+    for y in range(h):
+        for x in range(w):
+            v = math.fabs(simp.noise2(x/w, y/w))
+            img4.set_pixel(x, y, colorsys.hsv_to_rgb(c[0], c[1], v))
+    img4.show()
+
