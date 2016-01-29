@@ -23,6 +23,21 @@ def near_hue_hsv(hsv):
     return hsv2
 
 
+def near_v_hsv(hsv):
+    v = hsv[2]+random.uniform(-0.1, 0.1)
+    if v > 1.0:
+        v = 1.0
+    if v < 0.0:
+        v = 0.0
+    hsv2 = (hsv[0], hsv[1], v)
+    return hsv2
+
+
+def v_up_to(hsv):
+    v = random.uniform(0.0, hsv[2])
+    hsv2 = (hsv[0], hsv[1], v)
+    return hsv2
+
 def bright_color_rgb():
     rgb = colorsys.hsv_to_rgb(*bright_color_hsv())
     return rgb
